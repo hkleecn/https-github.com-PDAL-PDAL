@@ -4,10 +4,6 @@
 #include <pdal/pdal_macros.hpp>
 #include <pdal/util/ProgramArgs.hpp>
 
-#include <boost/program_options.hpp>
-
-namespace po = boost::program_options;
-
 namespace pdal
 {
   static PluginInfo const s_info = PluginInfo(
@@ -37,8 +33,8 @@ namespace pdal
   {
     // setPositional() Makes the argument required.
     args.add("filename", "Output filename", m_filename).setPositional();  
-    args.add("newline", "Line terminator", m_newline, "\n");
-    args.add("datafield" "Data field", m_datafield, "UserData");
+    args.add("newline", "Line terminator", m_newline, "\na");
+//    args.add("datafield" "Data field", m_datafield, "UserData");
     args.add("precision", "Precision", m_precision, 3);
   }
 
