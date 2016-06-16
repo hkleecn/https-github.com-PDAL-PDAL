@@ -97,6 +97,7 @@ void PgWriter::addArgs(ProgramArgs& args)
     args.add("srid", "SRID", m_srid, 4326U);
     args.add("pcid", "PCID", m_pcid);
     args.add("pre_sql", "SQL to execute before query", m_pre_sql);
+    args.add("post_sql", "SQL to execute after query", m_post_sql);
 }
 
 
