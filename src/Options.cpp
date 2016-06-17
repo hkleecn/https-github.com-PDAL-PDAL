@@ -188,7 +188,6 @@ StringList Options::toCommandLine() const
     for (const auto& op : m_options)
     {
         const Option& o = op.second;
-std::cerr << "Arg = " << o.toArg() << "!\n";
         s.push_back(o.toArg());
     }
     return s;

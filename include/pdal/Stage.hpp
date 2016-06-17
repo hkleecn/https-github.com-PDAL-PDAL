@@ -283,9 +283,8 @@ private:
 
     Stage& operator=(const Stage&); // not implemented
     Stage(const Stage&); // not implemented
-    void Construct();
 
-    void l_processOptions(const Options& options);
+    void setupLog();
     void handleOptions();
 
     virtual void readerAddArgs(ProgramArgs& /*args*/)

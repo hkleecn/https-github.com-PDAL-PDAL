@@ -48,10 +48,8 @@
 namespace pdal
 {
 
-Stage::Stage() : m_progressFd(-1)
-{
-    Construct();
-}
+Stage::Stage() : m_progressFd(-1), m_debug(false), m_verbose(0)
+{}
 
 
 void Stage::addConditionalOptions(const Options& opts)
@@ -59,13 +57,6 @@ void Stage::addConditionalOptions(const Options& opts)
     for (const auto& o : opts.getOptions())
         if (!m_options.hasOption(o.getName()))
             m_options.add(o);
-}
-
-
-void Stage::Construct()
-{
-    m_debug = false;
-    m_verbose = 0;
 }
 
 
@@ -94,18 +85,16 @@ void Stage::handleOptions()
 {
     try
     {
-    l_addArgs(*m_args);
-    addArgs(*m_args);
-    StringList cmdline = m_options.toCommandLine();
-    m_args->parse(cmdline);
+        l_addArgs(*m_args);
+        addArgs(*m_args);
+        StringList cmdline = m_options.toCommandLine();
+        m_args->parse(cmdline);
     }
     catch (arg_error error)
     {
-        std::cerr << "Error: " << getName() << ": " << error.m_error << "\n";
         throw pdal_error(error.m_error);
     }
-    l_processOptions(m_options);
-    processOptions(m_options);
+    setupLog();
 }
 
 
@@ -334,7 +323,7 @@ void Stage::l_addArgs(ProgramArgs& args)
 }
 
 
-void Stage::l_processOptions(const Options& options)
+void Stage::setupLog()
 {
     if (m_inputs.empty())
     {
