@@ -99,6 +99,9 @@ TEST(LasReaderTest, test_base_options)
         opts.add(opt_debug_string);
         LasReader reader;
         reader.setOptions(opts);
+
+        PointTable table;
+        reader.prepare(table);
         EXPECT_TRUE(reader.isDebug() == true);
     }
 
@@ -108,6 +111,9 @@ TEST(LasReaderTest, test_base_options)
         opts.add(opt_debug_bool);
         LasReader reader;
         reader.setOptions(opts);
+
+        PointTable table;
+        reader.prepare(table);
         EXPECT_TRUE(reader.isDebug() == true);
     }
 }
@@ -403,11 +409,8 @@ TEST(LasReaderTest, lazperf)
     lazReader.setOptions(ops1);
 
     PointTable t1;
-std::cerr << "Preparing!\n";
     lazReader.prepare(t1);
-std::cerr << "Prepared!\n";
     PointViewSet pbSet = lazReader.execute(t1);
-std::cerr << "Executing!\n";
     EXPECT_EQ(pbSet.size(), 1UL);
     PointViewPtr view1 = *pbSet.begin();
     EXPECT_EQ(view1->size(), (point_count_t)110000);

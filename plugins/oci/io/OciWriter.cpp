@@ -628,17 +628,6 @@ void OciWriter::createPCEntry()
             m_baseTableName << " table. Does the table exist? " << e.what();
         throw pdal_error(oss.str());
     }
-
-    try
-    {
-        Option& pc_id = m_options.getOptionByRef("pc_id");
-        pc_id.setValue(m_pc_id);
-    }
-    catch (Option::not_found)
-    {
-        Option pc_id("pc_id", m_pc_id, "Point Cloud Id");
-        m_options.add(pc_id);
-    }
 }
 
 

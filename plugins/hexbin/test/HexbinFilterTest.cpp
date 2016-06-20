@@ -70,14 +70,9 @@ TEST(HexbinFilterTest, HexbinFilterTest_test_1)
 
     Options hexOptions;
     hexOptions.add("output_tesselation", true);
-    hexOptions.add("sample_size", 5000, "Number of samples to use "
-        "when estimating hexagon edge size. Specify 0.0 for edge_size if "
-        "you want to compute one.");
-    hexOptions.add("threshold", 1, "Number of points necessary inside "
-        "a hexagon to be considered full");
-    hexOptions.add("edge_length", 0.666666666, "The edge size of the "
-        "hexagon to use in situations where you do not want to estimate "
-        "based on a sample");
+    hexOptions.add("sample_size", 5000);
+    hexOptions.add("threshold", 1);
+    hexOptions.add("edge_length", 0.666666666);
     EXPECT_TRUE(hexbin);
     hexbin->setOptions(hexOptions);
     hexbin->setInput(*reader);

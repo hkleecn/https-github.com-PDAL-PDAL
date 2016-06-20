@@ -54,14 +54,13 @@ Options getWriterOptions()
 {
     Options options;
 
-    options.add("overwrite", true, "overwrite");
+    options.add("overwrite", true);
     options.add("connection", tempFilename);
-    options.add("block_table_name", "PDAL_TEST_BLOCKS", "block_table_name");
+    options.add("block_table_name", "PDAL_TEST_BLOCKS");
     options.add("cloud_table_name", "PDAL_TEST_BASE");
     options.add("is3d", false);
     options.add("srid", 4326);
     options.add("cloud_column_name", "CLOUD");
-//    options.add("filename", Support::datapath("las/1.2-with-color.las"));
 
     return options;
 }
@@ -76,7 +75,7 @@ Options getReaderOptions()
         "l.num_points, l.bbox, l.extent, l.points, b.cloud "
         "FROM PDAL_TEST_BLOCKS l, PDAL_TEST_BASE b "
         "WHERE l.cloud = b.cloud and l.cloud in (1) "
-        "order by l.cloud", "");
+        "order by l.cloud");
 
     return options;
 }
@@ -88,7 +87,6 @@ void testReadWrite(bool compression, bool scaling)
     Options writerOptions = getWriterOptions();
     if (scaling)
     {
-        std::cerr << "*** Adding scale options!\n";
         writerOptions.add("scale_x", 0.01);
         writerOptions.add("scale_y", 0.01);
     }
@@ -111,11 +109,9 @@ void testReadWrite(bool compression, bool scaling)
     PointTable table;
     sqliteWriter->prepare(table);
     sqliteWriter->execute(table);
-std::cerr << "*** DONE writing!\n";
     }
 
     {
-    std::cerr << "*** Reading data!\n";
     Stage* sqliteReader(f.createStage("readers.sqlite"));
     sqliteReader->setOptions(getReaderOptions());
 

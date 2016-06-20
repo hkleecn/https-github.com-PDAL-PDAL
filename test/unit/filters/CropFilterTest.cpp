@@ -125,8 +125,8 @@ TEST(CropFilterTest, test_crop_polygon)
     reader.setOptions(ops1);
 
     Options options;
-    Option debug("debug", true, "");
-    Option verbose("verbose", 9, "");
+    Option debug("debug", true);
+    Option verbose("verbose", 9);
 
     std::istream* wkt_stream =
         FileUtils::openFile(Support::datapath("autzen/autzen-selection.wkt"));
@@ -136,7 +136,7 @@ TEST(CropFilterTest, test_crop_polygon)
 
     std::string wkt(strbuf.str());
 
-    Option polygon("polygon", wkt, "");
+    Option polygon("polygon", wkt);
     options.add(polygon);
 
     CropFilter crop;

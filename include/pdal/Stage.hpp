@@ -216,7 +216,7 @@ public:
       \return  The stage's debug state.
     */
     bool isDebug() const
-        { return m_options.getValueOrDefault<bool>("debug", false); }
+        { return m_debug; }
 
     /**
       Return the name of a stage.

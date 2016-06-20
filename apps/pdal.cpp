@@ -147,6 +147,7 @@ void outputOptions(std::string const& n)
 
     //ABELL - Fix me.
 //    std::vector<Option> options = s->getDefaultOptions().getOptions();
+/**
     std::vector<Option> options;
     if (options.empty())
     {
@@ -175,6 +176,7 @@ void outputOptions(std::string const& n)
         }
         std::cout << std::endl;
     }
+**/
 }
 
 

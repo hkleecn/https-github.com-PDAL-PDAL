@@ -55,8 +55,7 @@ Stage::Stage() : m_progressFd(-1), m_debug(false), m_verbose(0)
 void Stage::addConditionalOptions(const Options& opts)
 {
     for (const auto& o : opts.getOptions())
-        if (!m_options.hasOption(o.getName()))
-            m_options.add(o);
+        m_options.addConditional(o);
 }
 
 

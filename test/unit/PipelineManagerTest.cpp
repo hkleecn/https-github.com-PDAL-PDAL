@@ -56,7 +56,7 @@ TEST(PipelineManagerTest, basic)
 
     std::cout << "W" << std::endl;
     Options optsW;
-    optsW.add("filename", outfile, "file to write to");
+    optsW.add("filename", outfile);
     Stage& writer = mgr.addWriter("writers.las");
     writer.setInput(reader);
     writer.setOptions(optsW);
